@@ -16,7 +16,7 @@
     <meta name="description" content="Urban Crust offers the best burgers, pizzas, sandwiches & ice cream in Islamabad E-16. Order online now! Crown Crust Pizza, Zinger Burgers, Family Deals. Fast delivery. Call: +92 317 1991742">
     <meta name="keywords" content="Urban Crust, fast food Islamabad, best burger Islamabad, pizza delivery E-16, Crown Crust Pizza, zinger burger, ice cream Islamabad, food delivery Islamabad, Rafey Arcade restaurant">
     
-      <!-- Open Graph Meta Tags -->
+    <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Urban Crust - Best Fast Food in Islamabad">
     <meta property="og:description" content="Delicious Burgers, Pizzas, Ice Cream & More! Order Online Now from E-16 Rafey Arcade">
     <meta property="og:type" content="restaurant">
@@ -32,11 +32,21 @@
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        /* FIX: Prevent horizontal overflow */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+            position: relative;
         }
 
         :root {
@@ -45,24 +55,90 @@
             --dark: #1a1a1a;
             --black: #000;
             --white: #fff;
+            --accent: #ff6b6b;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background: var(--dark);
             color: var(--white);
-            overflow-x: hidden;
             line-height: 1.6;
+            width: 100%;
         }
 
-        /* Header - FIXED */
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            overflow: hidden;
+        }
+
+        .floating-shape {
+            position: absolute;
+            opacity: 0.03;
+            animation: float 20s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        .shape-1 {
+            top: 10%;
+            left: 10%;
+            font-size: 120px;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            top: 60%;
+            right: 15%;
+            font-size: 150px;
+            animation-delay: 3s;
+        }
+
+        .shape-3 {
+            bottom: 20%;
+            left: 20%;
+            font-size: 100px;
+            animation-delay: 6s;
+        }
+
+        .shape-4 {
+            top: 30%;
+            right: 30%;
+            font-size: 130px;
+            animation-delay: 9s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-30px) rotate(10deg);
+            }
+            50% {
+                transform: translateY(-60px) rotate(-10deg);
+            }
+            75% {
+                transform: translateY(-30px) rotate(5deg);
+            }
+        }
+
+        /* Header */
         header {
-            background: linear-gradient(135deg, var(--black) 0%, var(--dark) 100%);
-            padding: 0.8rem 0;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 1.2rem 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 5px 30px rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 100%;
         }
 
         nav {
@@ -71,29 +147,39 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 1rem;
-            gap: 1rem;
+            padding: 0 2rem;
+            width: 100%;
         }
 
         .logo {
-            font-size: 1.3rem;
-            font-weight: bold;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
             color: var(--primary);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 3px 3px 6px rgba(255, 215, 0, 0.3);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            flex-shrink: 0;
-            min-width: fit-content;
+            gap: 0.8rem;
+            letter-spacing: 1px;
+            z-index: 10;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .nav-links {
             display: flex;
-            gap: 0.4rem;
+            gap: 1rem;
             list-style: none;
             align-items: center;
             flex-wrap: wrap;
-            justify-content: flex-end;
         }
 
         .nav-links a {
@@ -101,480 +187,501 @@
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
-            padding: 0.5rem 0.7rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            white-space: nowrap;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .nav-links a:hover {
-            background: var(--primary);
-            color: var(--black);
-            transform: translateY(-2px);
-        }
-
-        .order-online-btn {
-            background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
-            color: var(--black) !important;
-            padding: 0.5rem 0.9rem !important;
-            border-radius: 20px !important;
-            font-weight: bold !important;
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4) !important;
-            animation: pulse 2s infinite !important;
-        }
-
-        .urban-sip-btn {
-            background: linear-gradient(135deg, #ffb6b9, #fa8072) !important;
-            color: #fff !important;
-            padding: 0.5rem 0.9rem !important;
-            border-radius: 20px !important;
-            font-weight: bold !important;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-            box-shadow: 0 5px 20px rgba(250, 128, 114, 0.4);
-        }
-
-        .urban-sip-btn:hover {
-            background: linear-gradient(135deg, #fa8072, #ff9999) !important;
-            transform: translateY(-2px) scale(1.05) !important;
-            box-shadow: 0 8px 25px rgba(250, 128, 114, 0.6) !important;
-            color: #fff !important;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        /* Search Bar */
-        .search-container {
-            width: 100%;
-            max-width: 600px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-
-        .search-box {
-            position: relative;
-            width: 100%;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 1rem 3.5rem 1rem 1.5rem;
-            border: 3px solid var(--primary);
+            padding: 0.8rem 1.2rem;
             border-radius: 30px;
-            background: var(--dark);
-            color: var(--white);
-            font-size: 1.1rem;
-            transition: all 0.3s;
-        }
-
-        .search-input:focus {
-            outline: none;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-            background: #2a2a2a;
-        }
-
-        .search-input::placeholder {
-            color: #888;
-        }
-
-        .search-icon {
-            position: absolute;
-            right: 1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--primary);
-            font-size: 1.3rem;
-            pointer-events: none;
-        }
-
-        .clear-search {
-            position: absolute;
-            right: 3.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--secondary);
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: none;
-            background: var(--black);
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .clear-search:hover {
-            background: var(--primary);
-            color: var(--black);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .search-results-info {
-            text-align: center;
-            color: var(--primary);
-            margin-top: 1rem;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        /* PWA Install Popup */
-        .install-popup {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            padding: 1.5rem;
-            box-shadow: 0 -5px 30px rgba(255, 215, 0, 0.5);
-            z-index: 9999;
-            animation: slideUp 0.5s ease-out;
-            border-top-left-radius: 30px;
-            border-top-right-radius: 30px;
-        }
-
-        .install-popup.show {
-            display: block;
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(100%); }
-            to { transform: translateY(0); }
-        }
-
-        .install-content {
-            max-width: 600px;
-            margin: 0 auto;
+            font-size: 1rem;
             display: flex;
             align-items: center;
-            gap: 1.5rem;
-            color: var(--black);
-        }
-
-        .install-icon {
-            font-size: 3rem;
-            animation: bounce 1s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .install-text h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .install-text p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        .install-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-left: auto;
-        }
-
-        .install-btn {
-            background: var(--black);
-            color: var(--primary);
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            white-space: nowrap;
-        }
-
-        .install-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .close-install {
-            background: transparent;
-            color: var(--black);
-            border: 2px solid var(--black);
-        }
-
-        /* Hero Slider */
-        .hero-slider {
-            height: 500px;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(to bottom, var(--dark), var(--black));
-        }
-
-        .slider-container {
-            display: flex;
-            animation: slide 15s infinite linear;
-            height: 100%;
-        }
-
-        .slide {
-            min-width: 400px;
-            height: 100%;
-            margin: 0 20px;
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3);
-            transition: transform 0.3s;
-        }
-
-        .slide:hover {
-            transform: scale(1.05);
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .slide-label {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(255, 215, 0, 0.95);
-            color: var(--black);
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        @keyframes slide {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Categories */
-        .categories {
-            padding: 2rem 2rem 4rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 3rem;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
-        }
-
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .category-btn {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: var(--black);
-            padding: 2rem;
-            border: none;
-            border-radius: 20px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .category-btn i {
-            font-size: 3rem;
-        }
-
-        .category-btn:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
-        }
-
-        .category-btn.active {
-            background: var(--black);
-            color: var(--primary);
-            border: 3px solid var(--primary);
-        }
-
-        /* Food Grid */
-        .food-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .food-card {
-            background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
-            border-radius: 20px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.4s;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .food-card:hover {
-            transform: translateY(-15px) rotate(2deg);
-            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.4);
-        }
-
-        .food-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .food-card:hover .food-image {
-            transform: scale(1.1);
-        }
-
-        .food-info {
-            padding: 1.5rem;
-        }
-
-        .food-name {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        .food-price {
-            font-size: 1.3rem;
-            color: var(--secondary);
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .food-desc {
-            color: #ccc;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .order-btn {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--black);
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             gap: 0.5rem;
         }
 
-        .order-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
+        .nav-links a:hover {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--primary);
+            transform: translateY(-3px);
         }
 
-        /* No Results Message */
-        .no-results {
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+            color: var(--black) !important;
+            padding: 0.8rem 2rem !important;
+            font-weight: 700 !important;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4) !important;
+            animation: pulse-glow 2s infinite !important;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 12px 35px rgba(255, 215, 0, 0.6);
+            }
+        }
+
+        /* Hero Section - FIX: Better z-index and container control */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             padding: 4rem 2rem;
-            color: var(--primary);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 100%;
         }
 
-        .no-results i {
+        .hero-content {
+            max-width: 900px;
+            z-index: 10;
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+            width: 100%;
+            padding: 0 1rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
             font-size: 5rem;
+            font-weight: 900;
+            color: var(--primary);
             margin-bottom: 1rem;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+            animation: slideInLeft 1s ease-out;
+            word-wrap: break-word;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            animation: slideInRight 1s ease-out 0.3s backwards;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            animation: fadeIn 1s ease-out 0.6s backwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Mega Menu Button - FIX: Better positioning and z-index */
+        .mega-menu-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--black);
+            padding: 1.5rem 4rem;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation: bounceIn 1s ease-out 0.9s backwards;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .mega-menu-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .mega-menu-btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .mega-menu-btn:hover {
+            transform: translateY(-10px) scale(1.1);
+            box-shadow: 0 25px 60px rgba(255, 215, 0, 0.7);
+        }
+
+        .mega-menu-btn span {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mega-menu-btn i {
+            font-size: 2rem;
+            animation: wiggle 1s infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        /* Features Section - FIX: Better z-index stacking */
+        .features {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(255, 215, 0, 0.05) 100%);
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 4rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            word-wrap: break-word;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            width: 100%;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
+            padding: 3rem;
+            border-radius: 30px;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--primary), transparent 30%);
+            animation: rotate-border 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.5s;
+            z-index: 0;
+        }
+
+        .feature-card:hover::before {
             opacity: 0.5;
         }
 
-        .no-results h3 {
-            font-size: 2rem;
+        @keyframes rotate-border {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .feature-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-20px) scale(1.05);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            transition: all 0.5s;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotate(360deg);
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
             margin-bottom: 1rem;
+            font-weight: 700;
         }
 
-        .no-results p {
+        .feature-card p {
             color: #ccc;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
 
-        /* Contact Section */
-        .contact {
-            background: linear-gradient(135deg, var(--black), var(--dark));
-            padding: 4rem 2rem;
-            margin-top: 4rem;
+        /* Gallery Section */
+        .gallery {
+            padding: 6rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            max-width: 100%;
         }
 
-        .contact-content {
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            width: 100%;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            cursor: pointer;
+            height: 400px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 25px 60px rgba(255, 215, 0, 0.4);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.2) rotate(3deg);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 2;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-overlay p {
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 165, 0, 0.05) 100%);
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            width: 100%;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        .stat-label {
+            font-size: 1.3rem;
+            color: var(--white);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Location Section */
+        .location {
+            padding: 6rem 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .location-container {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 3rem;
+            width: 100%;
         }
 
-        .contact-card {
-            background: rgba(255, 215, 0, 0.1);
-            padding: 2rem;
-            border-radius: 20px;
+        .location-card {
+            background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
+            padding: 3rem;
+            border-radius: 30px;
             text-align: center;
             border: 2px solid var(--primary);
-            transition: all 0.3s;
+            transition: all 0.5s;
         }
 
-        .contact-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 215, 0, 0.2);
+        .location-card:hover {
+            transform: translateY(-15px) rotate(2deg);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.4);
         }
 
-        .contact-card i {
-            font-size: 3rem;
+        .location-card i {
+            font-size: 4rem;
             color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        .contact-card h3 {
+        .location-card h3 {
             color: var(--primary);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-bottom: 1rem;
+            font-weight: 700;
         }
 
-        .contact-card p {
+        .location-card p {
             color: var(--white);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             line-height: 1.8;
         }
 
-        .contact-card a {
+        .location-card a {
             color: var(--secondary);
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .location-card a:hover {
+            color: var(--primary);
+            text-decoration: underline;
         }
 
         /* Footer */
         footer {
             background: var(--black);
-            padding: 3rem 2rem 1rem;
+            padding: 4rem 2rem 2rem;
             border-top: 3px solid var(--primary);
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            max-width: 100%;
         }
 
         .footer-content {
@@ -583,18 +690,21 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 3rem;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+            width: 100%;
         }
 
         .footer-section h3 {
             color: var(--primary);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
         }
 
         .footer-section p, .footer-section ul {
             color: #ccc;
-            line-height: 1.8;
+            line-height: 2;
+            font-size: 1.1rem;
         }
 
         .footer-section ul {
@@ -602,31 +712,49 @@
         }
 
         .footer-section ul li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .footer-section ul li:hover {
+            transform: translateX(10px);
+            color: var(--primary);
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary);
         }
 
         .social-links {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .social-links a {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: var(--black);
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s;
-            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
         }
 
         .social-links a:hover {
             transform: scale(1.2) rotate(360deg);
-            background: var(--secondary);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
         }
 
         .footer-bottom {
@@ -634,449 +762,211 @@
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 215, 0, 0.3);
             color: var(--primary);
+            font-size: 1.1rem;
         }
 
-        /* Modal */
-        .modal {
-            display: none;
+        /* Scroll to Top Button */
+        .scroll-top {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 2000;
-            overflow-y: auto;
-        }
-
-        .modal-content {
-            max-width: 800px;
-            margin: 3rem auto;
-            background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
-            border-radius: 30px;
-            padding: 2rem;
-            position: relative;
-            border: 3px solid var(--primary);
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 2rem;
-            color: var(--primary);
-            cursor: pointer;
-            background: var(--black);
-            width: 40px;
-            height: 40px;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--black);
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .close-modal:hover {
-            transform: rotate(90deg);
-            background: var(--primary);
-            color: var(--black);
-        }
-
-        .modal-image {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 20px;
-            margin-bottom: 2rem;
-        }
-
-        /* ORDER PAGE */
-        .order-page {
-            display: none;
-            min-height: 100vh;
-            padding: 2rem;
-        }
-
-        .order-page.active {
-            display: block;
-        }
-
-        .order-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
-            border-radius: 30px;
-            padding: 3rem;
-            border: 3px solid var(--primary);
-        }
-
-        .order-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .order-header h1 {
-            color: var(--primary);
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .order-form {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group label {
-            color: var(--primary);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .form-group select, .form-group input, .form-group textarea {
-            background: var(--dark);
-            color: var(--white);
-            border: 2px solid var(--primary);
-            padding: 1rem;
-            border-radius: 15px;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-        }
-
-        .form-group select:focus, .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--secondary);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-        }
-
-        .size-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 1rem;
-        }
-
-        .size-btn {
-            background: var(--dark);
-            color: var(--white);
-            border: 2px solid var(--primary);
-            padding: 1rem;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: bold;
-        }
-
-        .size-btn:hover {
-            background: rgba(255, 215, 0, 0.2);
-        }
-
-        .size-btn.selected {
-            background: var(--primary);
-            color: var(--black);
-            transform: scale(1.05);
-        }
-
-        .order-summary {
-            background: rgba(255, 215, 0, 0.1);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 2px solid var(--primary);
-        }
-
-        .order-summary h3 {
-            color: var(--primary);
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-        }
-
-        .summary-total {
             font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary);
-            margin-top: 1rem;
-        }
-
-        .location-btn {
-            background: linear-gradient(135deg, #4CAF50, #45a049);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 25px;
             cursor: pointer;
-            font-weight: bold;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            transition: all 0.3s;
-            margin-top: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+            z-index: 999;
         }
 
-        .location-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.5);
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
         }
 
-        .location-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
+        .scroll-top:hover {
+            transform: translateY(-10px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
         }
 
-        .map-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 1rem;
-            background: linear-gradient(135deg, #4CAF50, #45a049);
-            border-radius: 15px;
-            transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
-        }
-
-        .map-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(76, 175, 80, 0.6);
-        }
-
-        #mapLinkContainer {
-            margin-top: 1rem;
-        }
-
-        #mapLinkContainer a {
-            width: 100%;
-        }
-
-        .submit-order-btn {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--black);
-            border: none;
-            padding: 1.5rem 3rem;
-            border-radius: 30px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .submit-order-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
-        }
-
-        .back-btn {
-            background: var(--dark);
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-bottom: 2rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s;
-        }
-
-        .back-btn:hover {
-            background: var(--primary);
-            color: var(--black);
-        }
-
-        .home-page {
-            display: block;
-        }
-
-        .home-page.hidden {
-            display: none;
-        }
-
-        /* MOBILE RESPONSIVE - FIXED */
+        /* Mobile Responsive - FIX: Better typography scaling */
         @media (max-width: 768px) {
             nav {
-                flex-wrap: nowrap;
-                padding: 0 0.5rem;
+                padding: 0 1rem;
             }
 
             .logo {
-                font-size: 1.1rem;
+                font-size: 1.5rem;
             }
 
-            .logo span {
-                display: none;
+            .logo i {
+                font-size: 1.8rem;
             }
 
             .nav-links {
-                gap: 0.25rem;
-                flex-wrap: nowrap;
+                gap: 0.5rem;
             }
 
             .nav-links a {
-                padding: 0.4rem 0.5rem;
-                font-size: 0.7rem;
+                padding: 0.6rem 0.8rem;
+                font-size: 0.85rem;
             }
 
             .nav-links a span {
                 display: none;
             }
 
-            .nav-links a i {
+            .cta-button {
+                padding: 0.6rem 1rem !important;
+            }
+
+            /* FIX: Responsive typography */
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .hero-description {
                 font-size: 1rem;
             }
 
-            .order-online-btn, .urban-sip-btn {
-                padding: 0.4rem 0.6rem !important;
-                font-size: 0.7rem !important;
+            .mega-menu-btn {
+                padding: 1.2rem 2.5rem;
+                font-size: 1.2rem;
             }
 
-            .search-container {
-                padding: 0 1rem;
-                margin: 1.5rem auto;
-            }
-
-            .search-input {
-                padding: 0.8rem 3rem 0.8rem 1rem;
-                font-size: 0.95rem;
-            }
-
-            .search-icon {
-                font-size: 1.1rem;
-                right: 1rem;
-            }
-
-            .clear-search {
-                right: 2.8rem;
-            }
-
-            .hero-slider {
-                height: 300px;
-            }
-
-            .slide {
-                min-width: 250px;
-                margin: 0 10px;
+            .mega-menu-btn i {
+                font-size: 1.5rem;
             }
 
             .section-title {
-                font-size: 1.8rem;
+                font-size: 2.5rem;
             }
 
-            .category-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-
-            .category-btn {
-                padding: 1.2rem 0.8rem;
-                font-size: 0.95rem;
-            }
-
-            .category-btn i {
-                font-size: 2rem;
-            }
-
-            .food-grid {
+            .features-grid {
                 grid-template-columns: 1fr;
-                padding: 1rem;
+                gap: 2rem;
+            }
+
+            .feature-card {
+                padding: 2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
 
-            .order-container {
-                padding: 1.5rem;
+            .gallery-item {
+                height: 300px;
             }
 
-            .order-header h1 {
-                font-size: 2rem;
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
             }
 
-            .modal-content {
-                margin: 2rem 1rem;
-                padding: 1.5rem;
-            }
-
-            .modal-image {
-                height: 250px;
-            }
-
-            .install-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .install-buttons {
-                margin-left: 0;
-                width: 100%;
-                flex-direction: column;
-            }
-
-            .install-btn {
-                width: 100%;
-            }
-
-            .no-results i {
+            .stat-number {
                 font-size: 3rem;
             }
 
-            .no-results h3 {
-                font-size: 1.5rem;
+            .stat-label {
+                font-size: 1rem;
+            }
+
+            .location-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-shape {
+                font-size: 60px !important;
             }
         }
 
         @media (max-width: 480px) {
-            .logo {
+            /* FIX: Even smaller screens */
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-description {
+                font-size: 0.95rem;
+            }
+
+            .mega-menu-btn {
+                padding: 1rem 2rem;
                 font-size: 1rem;
             }
 
-            .nav-links a {
-                padding: 0.35rem 0.4rem;
-                font-size: 0.65rem;
+            .section-title {
+                font-size: 2rem;
             }
 
-            .nav-links a i {
-                font-size: 0.9rem;
+            .feature-icon {
+                font-size: 3rem;
             }
+
+            .feature-card h3 {
+                font-size: 1.5rem;
+            }
+
+            .feature-card p {
+                font-size: 1rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .scroll-top {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* FIX: Prevent any element from causing horizontal scroll */
+        .hero-content,
+        .features-container,
+        .gallery-container,
+        .stats-container,
+        .location-container,
+        .footer-content {
+            max-width: 100%;
         }
     </style>
 </head>
 <body>
-    <!-- PWA Install Popup -->
-    <div class="install-popup" id="installPopup">
-        <div class="install-content">
-            <div class="install-icon">🍕</div>
-            <div class="install-text">
-                <h3>Install Urban Crust App</h3>
-                <p>Get faster access and order quickly from your home screen!</p>
-            </div>
-            <div class="install-buttons">
-                <button class="install-btn" id="installBtn">
-                    <i class="fas fa-download"></i> Install
-                </button>
-                <button class="install-btn close-install" id="closeInstallBtn">
-                    Later
-                </button>
-            </div>
-        </div>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shape shape-1">🍕</div>
+        <div class="floating-shape shape-2">🍔</div>
+        <div class="floating-shape shape-3">🍦</div>
+        <div class="floating-shape shape-4">🥪</div>
     </div>
 
     <!-- Header -->
@@ -1087,736 +977,354 @@
                 <span>Urban Crust</span>
             </div>
             <ul class="nav-links">
-                <li><a href="#home" onclick="showHome()"><i class="fas fa-home"></i> <span>Home</span></a></li>
-                <li><a href="urban-menu.html"><i class="fas fa-utensils"></i> <span>Menu</span></a></li>
-                <li><a href="#contact" onclick="showHome()"><i class="fas fa-phone"></i> <span>Contact</span></a></li>
-                <li><a href="sweets.html" class="urban-sip-btn"><i class="fas fa-mug-hot"></i> <span>Urban Sip</span></a></li>
-                <li><a href="#order" class="order-online-btn" onclick="showOrderPage()">
-                    <i class="fas fa-shopping-cart"></i> <span>Order</span>
+                <li><a href="#home"><i class="fas fa-home"></i> <span>Home</span></a></li>
+                <li><a href="#about"><i class="fas fa-info-circle"></i> <span>About</span></a></li>
+                <li><a href="#gallery"><i class="fas fa-images"></i> <span>Gallery</span></a></li>
+                <li><a href="#contact"><i class="fas fa-phone"></i> <span>Contact</span></a></li>
+                <li><a href="sweets.html"><i class="fas fa-mug-hot"></i> <span>Urban Sip</span></a></li>
+                <li><a href="urban-menu.html" class="cta-button">
+                    <i class="fas fa-utensils"></i> <span>Our Menu</span>
                 </a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- HOME PAGE -->
-    <div class="home-page" id="homePage">
-        <!-- Hero Slider -->
-        <section class="hero-slider" id="home">
-            <div class="slider-container">
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&q=80" alt="Classic Burger">
-                    <div class="slide-label">🍔 Classic Burger</div>
-                </div>
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80" alt="Delicious Pizza">
-                    <div class="slide-label">🍕 Delicious Pizza</div>
-                </div>
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80" alt="Burger Deal">
-                    <div class="slide-label">🔥 Special Deal</div>
-                </div>
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&q=80" alt="Ice Cream">
-                    <div class="slide-label">🍦 Ice Cream</div>
-                </div>
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=800&q=80" alt="Fresh Sandwich">
-                    <div class="slide-label">🥪 Fresh Sandwich</div>
-                </div>
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&q=80" alt="Classic Burger">
-                    <div class="slide-label">🍔 Classic Burger</div>
-                </div>
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80" alt="Delicious Pizza">
-                    <div class="slide-label">🍕 Delicious Pizza</div>
-                </div>
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80" alt="Burger Deal">
-                    <div class="slide-label">🔥 Special Deal</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Search Bar -->
-        <div class="search-container">
-            <div class="search-box">
-                <input 
-                    type="text" 
-                    id="searchInput" 
-                    class="search-input" 
-                    placeholder="🔍 Search for burgers, pizza, ice cream..."
-                    autocomplete="off"
-                >
-                <span class="clear-search" id="clearSearch">
-                    <i class="fas fa-times"></i>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">Urban Crust</h1>
+            <p class="hero-subtitle">Where Flavor Meets Excellence</p>
+            <p class="hero-description">
+                Experience the finest fast food in Islamabad! From mouthwatering burgers to crispy pizzas, 
+                creamy ice cream to fresh sandwiches - every bite is a celebration of taste.
+            </p>
+            <a href="urban-menu.html" class="mega-menu-btn">
+                <span>
+                    <i class="fas fa-utensils"></i>
+                    Explore Our Menu
                 </span>
-                <i class="fas fa-search search-icon"></i>
-            </div>
-            <div class="search-results-info" id="searchInfo"></div>
+            </a>
         </div>
+    </section>
 
-        <!-- Categories -->
-        <section class="categories" id="menu">
-            <h2 class="section-title">🍽️ Our Menu Categories</h2>
-            <div class="category-grid">
-                <button class="category-btn active" data-category="all">
-                    <i class="fas fa-th"></i>
-                    All Items
-                </button>
-                <button class="category-btn" data-category="burgers">
-                    <i class="fas fa-hamburger"></i>
-                    Burgers
-                </button>
-                <button class="category-btn" data-category="pizza">
-                    <i class="fas fa-pizza-slice"></i>
-                    Pizza
-                </button>
-                <button class="category-btn" data-category="sandwiches">
-                    <i class="fas fa-bread-slice"></i>
-                    Sandwiches
-                </button>
-                <button class="category-btn" data-category="icecream">
-                    <i class="fas fa-ice-cream"></i>
-                    Ice Cream
-                </button>
-                <button class="category-btn" data-category="deals">
-                    <i class="fas fa-fire"></i>
-                    Deals
-                </button>
-                <button class="category-btn" data-category="drinks">
-                    <i class="fas fa-glass-cheers"></i>
-                    Drinks
-                </button>
+    <!-- Features Section -->
+    <section class="features" id="about">
+        <div class="features-container">
+            <h2 class="section-title">Why Choose Urban Crust?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-hamburger feature-icon"></i>
+                    <h3>Premium Quality</h3>
+                    <p>We use only the freshest ingredients to create dishes that burst with authentic flavors and quality you can taste in every bite.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-clock feature-icon"></i>
+                    <h3>Fast Delivery</h3>
+                    <p>Quick and reliable delivery service ensures your food arrives hot and fresh right at your doorstep within minutes.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-star feature-icon"></i>
+                    <h3>5-Star Experience</h3>
+                    <p>Exceptional taste, amazing service, and memorable dining experience - that's our promise to every customer who walks through our doors.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-pizza-slice feature-icon"></i>
+                    <h3>Crown Crust Pizza</h3>
+                    <p>Our signature Crown Crust Pizza is legendary - cheese-filled crust with premium toppings that will make you fall in love.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-ice-cream feature-icon"></i>
+                    <h3>Delicious Desserts</h3>
+                    <p>Indulge in our creamy ice creams, decadent sundaes, and sweet treats that are the perfect ending to any meal.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-fire feature-icon"></i>
+                    <h3>Amazing Deals</h3>
+                    <p>Family deals, combo offers, and special promotions that give you more value while enjoying premium quality food.</p>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="food-grid" id="foodGrid"></div>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="contact" id="contact">
-            <h2 class="section-title">📞 Contact Us</h2>
-            <div class="contact-content">
-                <article class="contact-card">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>Location</h3>
-                    <p>E-16 Rafey Arcade<br>Islamabad, Pakistan</p>
-                </article>
-                <article class="contact-card">
-                    <i class="fas fa-phone-alt"></i>
-                    <h3>Phone</h3>
-                    <p><a href="tel:+923171991742">+92 317 1991742</a></p>
-                </article>
-                <article class="contact-card">
-                    <i class="fas fa-clock"></i>
-                    <h3>Hours</h3>
-                    <p>Mon - Sun<br>11:00 AM - 11:00 PM</p>
-                </article>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>🍕 Urban Crust</h3>
-                    <p>Experience the finest fast food in Islamabad! From juicy burgers to crispy pizzas, we serve quality food with love since 2020.</p>
-                    <div class="social-links">
-                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/923171991742" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="gallery-container">
+            <h2 class="section-title">Our Delicious Creations</h2>
+            <p style="text-align: center; color: #ccc; font-size: 1.2rem; margin-bottom: 2rem;">
+                A visual feast of our most popular dishes and happy customers
+            </p>
+            <div class="gallery-grid">
+                <!-- Image placeholders - Replace these URLs with your Facebook photos -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&q=80" alt="Signature Burger">
+                    <div class="gallery-overlay">
+                        <h3>Signature Burgers</h3>
+                        <p>Juicy, flavorful, and absolutely irresistible</p>
                     </div>
                 </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><i class="fas fa-chevron-right"></i> <a href="#home" style="color: #ccc;">Home</a></li>
-                        <li><i class="fas fa-chevron-right"></i> <a href="#menu" style="color: #ccc;">Menu</a></li>
-                        <li><i class="fas fa-chevron-right"></i> <a href="#order" onclick="showOrderPage()" style="color: #ccc;">Order Online</a></li>
-                        <li><i class="fas fa-chevron-right"></i> <a href="#contact" style="color: #ccc;">Contact</a></li>
-                    </ul>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80" alt="Crown Crust Pizza">
+                    <div class="gallery-overlay">
+                        <h3>Crown Crust Pizza</h3>
+                        <p>Our legendary cheese-filled crust masterpiece</p>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h3>Our Specialties</h3>
-                    <ul>
-                        <li><i class="fas fa-star"></i> Premium Burgers</li>
-                        <li><i class="fas fa-star"></i> Crown Crust Pizza</li>
-                        <li><i class="fas fa-star"></i> Fresh Ice Creams</li>
-                        <li><i class="fas fa-star"></i> Family Deals</li>
-                    </ul>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&q=80" alt="Ice Cream Delights">
+                    <div class="gallery-overlay">
+                        <h3>Ice Cream Delights</h3>
+                        <p>Creamy, dreamy, and utterly delicious</p>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h3>Visit Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> E-16 Rafey Arcade, Islamabad</p>
-                    <p><i class="fas fa-phone"></i> <a href="tel:+923171991742" style="color: #FFA500;">+92 317 1991742</a></p>
-                    <p><i class="fas fa-envelope"></i> info@urbancrust.com</p>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=800&q=80" alt="Fresh Sandwiches">
+                    <div class="gallery-overlay">
+                        <h3>Fresh Sandwiches</h3>
+                        <p>Perfectly crafted with premium ingredients</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80" alt="Zinger Burgers">
+                    <div class="gallery-overlay">
+                        <h3>Spicy Zingers</h3>
+                        <p>For those who love it hot and crispy</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&q=80" alt="Family Deals">
+                    <div class="gallery-overlay">
+                        <h3>Family Deals</h3>
+                        <p>Amazing combos for the whole family</p>
+                    </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Urban Crust | Best Fast Food Restaurant in Islamabad 🍕🍔</p>
-            </div>
-        </footer>
-    </div>
+        </div>
+    </section>
 
-    <!-- ORDER ONLINE PAGE -->
-    <div class="order-page" id="orderPage">
-        <div class="order-container">
-            <button class="back-btn" onclick="showHome()">
-                <i class="fas fa-arrow-left"></i> Back to Menu
-            </button>
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">10,000+</div>
+                <div class="stat-label">Happy Customers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Menu Items</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5 Years</div>
+                <div class="stat-label">Excellence</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Fresh Quality</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location" id="contact">
+        <div class="location-container">
+            <h2 class="section-title" style="grid-column: 1/-1;">Visit Us Today</h2>
             
-            <div class="order-header">
-                <h1>🛒 Order Online</h1>
-                <p style="color: #ccc;">Fill the form below and we'll prepare your delicious order!</p>
+            <div class="location-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Location</h3>
+                <p>E-16 Rafey Arcade<br>Islamabad, Pakistan</p>
             </div>
 
-            <form class="order-form" id="orderForm">
-                <div class="form-group">
-                    <label for="customerName"><i class="fas fa-user"></i> Your Name *</label>
-                    <input type="text" id="customerName" placeholder="Enter your name" required>
-                </div>
+            <div class="location-card">
+                <i class="fas fa-phone-alt"></i>
+                <h3>Call Us</h3>
+                <p><a href="tel:+923171991742">+92 317 1991742</a></p>
+                <p style="font-size: 1rem; margin-top: 0.5rem;">Order via WhatsApp</p>
+            </div>
 
-                <div class="form-group">
-                    <label for="customerPhone"><i class="fas fa-phone"></i> Phone Number *</label>
-                    <input type="tel" id="customerPhone" placeholder="+92 3XX XXXXXXX" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="itemSelect"><i class="fas fa-utensils"></i> Select Item *</label>
-                    <select id="itemSelect" required onchange="updateSizes()">
-                        <option value="">Choose your item...</option>
-                    </select>
-                </div>
-
-                <div class="form-group" id="sizeGroup" style="display: none;">
-                    <label><i class="fas fa-expand"></i> Select Size *</label>
-                    <div class="size-options" id="sizeOptions"></div>
-                </div>
-
-                <div class="form-group">
-                    <label for="quantity"><i class="fas fa-sort-numeric-up"></i> Quantity *</label>
-                    <input type="number" id="quantity" value="1" min="1" max="20" required onchange="updateTotal()">
-                </div>
-
-                <div class="form-group">
-                    <label for="deliveryAddress"><i class="fas fa-map-marker-alt"></i> Delivery Location *</label>
-                    <textarea id="deliveryAddress" rows="3" placeholder="Enter your complete address..." required></textarea>
-                    <button type="button" class="location-btn" id="locationBtn" onclick="getLocation()">
-                        <i class="fas fa-crosshairs"></i> Use My Current Location
-                    </button>
-                    <div id="mapLinkContainer"></div>
-                </div>
-
-                <div class="form-group">
-                    <label for="specialInstructions"><i class="fas fa-comment"></i> Special Instructions (Optional)</label>
-                    <textarea id="specialInstructions" rows="2" placeholder="Any special requests?"></textarea>
-                </div>
-
-                <div class="order-summary">
-                    <h3>📋 Order Summary</h3>
-                    <div class="summary-item">
-                        <span>Item:</span>
-                        <span id="summaryItem">-</span>
-                    </div>
-                    <div class="summary-item">
-                        <span>Size:</span>
-                        <span id="summarySize">-</span>
-                    </div>
-                    <div class="summary-item">
-                        <span>Quantity:</span>
-                        <span id="summaryQty">1</span>
-                    </div>
-                    <div class="summary-item">
-                        <span>Price per item:</span>
-                        <span id="summaryPrice">Rs. 0</span>
-                    </div>
-                    <div class="summary-item summary-total">
-                        <span>Total Amount:</span>
-                        <span id="summaryTotal">Rs. 0</span>
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-order-btn">
-                    <i class="fab fa-whatsapp"></i> Send Order via WhatsApp
-                </button>
-            </form>
+            <div class="location-card">
+                <i class="fas fa-clock"></i>
+                <h3>Opening Hours</h3>
+                <p>Monday - Sunday<br>11:00 AM - 11:00 PM</p>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Modal -->
-    <div class="modal" id="foodModal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <img class="modal-image" id="modalImage" src="" alt="">
-            <h2 id="modalName" style="color: var(--primary); font-size: 2.5rem; margin-bottom: 1rem;"></h2>
-            <p id="modalPrice" style="color: var(--secondary); font-size: 1.8rem; font-weight: bold; margin-bottom: 1rem;"></p>
-            <p id="modalDesc" style="color: #ccc; font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem;"></p>
-            <button class="order-btn" id="modalOrderBtn">
-                <i class="fas fa-shopping-cart"></i> Order This Item
-            </button>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>🍕 Urban Crust</h3>
+                <p>Serving Islamabad's finest fast food since 2020. Every dish crafted with love, passion, and the freshest ingredients.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/people/Urban-Crust/61566038663961/" target="_blank" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/923171991742" target="_blank" title="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://tiktok.com" target="_blank" title="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">🏠 Home</a></li>
+                    <li><a href="#about">ℹ️ About Us</a></li>
+                    <li><a href="urban-menu.html">🍽️ Full Menu</a></li>
+                    <li><a href="#gallery">📸 Gallery</a></li>
+                    <li><a href="#contact">📞 Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Our Specialties</h3>
+                <ul>
+                    <li>⭐ Premium Burgers</li>
+                    <li>⭐ Crown Crust Pizza</li>
+                    <li>⭐ Fresh Ice Cream</li>
+                    <li>⭐ Delicious Sandwiches</li>
+                    <li>⭐ Family Combo Deals</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Get In Touch</h3>
+                <p>
+                    <i class="fas fa-map-marker-alt"></i> E-16 Rafey Arcade<br>
+                    Islamabad, Pakistan
+                </p>
+                <p>
+                    <i class="fas fa-phone"></i> <a href="tel:+923171991742">+92 317 1991742</a>
+                </p>
+                <p>
+                    <i class="fas fa-envelope"></i> <a href="mailto:info@urbancrust.com">info@urbancrust.com</a>
+                </p>
+            </div>
         </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Urban Crust | Best Fast Food Restaurant in Islamabad 🍕🍔🍦</p>
+            <p style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.8;">
+                Made with ❤️ for food lovers
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
     </div>
 
     <script>
-        // Food Data
-        const foodItems = [
-            {id: 1, name: "Classic Beef Burger", category: "burgers", image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80", desc: "Juicy beef patty with fresh vegetables, lettuce, tomatoes and our signature sauce.", 
-                sizes: [{name: "Junior", price: 350}, {name: "Regular", price: 450}, {name: "Senior", price: 550}]},
-            {id: 2, name: "Cheese Burst Burger", category: "burgers", image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=600&q=80", desc: "Double cheese layers with crispy chicken patty, mayo and fresh vegetables.", 
-                sizes: [{name: "Junior", price: 450}, {name: "Regular", price: 550}, {name: "Senior", price: 650}]},
-            {id: 3, name: "Spicy Zinger Burger", category: "burgers", image: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=600&q=80", desc: "Spicy fried chicken with mayo, lettuce and special hot sauce.", 
-                sizes: [{name: "Junior", price: 400}, {name: "Regular", price: 500}, {name: "Senior", price: 600}]},
-            {id: 5, name: "Fajita Supreme Pizza", category: "pizza", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80", desc: "Loaded with chicken fajita, bell peppers, onions and mozzarella cheese.", 
-                sizes: [{name: "Small", price: 800}, {name: "Medium", price: 1200}, {name: "Large", price: 1600}, {name: "X-Large", price: 2000}]},
-            {id: 6, name: "Crown Crust Pizza", category: "pizza", image: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=600&q=80", desc: "Cheese-filled crown crust with premium toppings.", 
-                sizes: [{name: "Small", price: 1000}, {name: "Medium", price: 1400}, {name: "Large", price: 1800}, {name: "X-Large", price: 2200}]},
-            {id: 10, name: "Club Sandwich", category: "sandwiches", image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80", desc: "Triple layer club sandwich with grilled chicken, egg, lettuce, tomato and mayo.", 
-                sizes: [{name: "Regular", price: 400}, {name: "Large", price: 550}]},
-            {id: 13, name: "Chocolate Sundae", category: "icecream", image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&q=80", desc: "Rich chocolate ice cream with chocolate syrup, nuts and whipped cream.", 
-                sizes: [{name: "Regular", price: 250}, {name: "Large", price: 350}]},
-            {id: 17, name: "Family Deal 1", category: "deals", image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&q=80", desc: "2 Large Pizzas + 1.5L Drink + Large Fries", 
-                sizes: [{name: "Standard", price: 2500}]},
-            {id: 20, name: "Fresh Juices", category: "drinks", image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=600&q=80", desc: "Fresh seasonal fruit juices - orange, apple, mango, pineapple.", 
-                sizes: [{name: "Regular", price: 200}, {name: "Large", price: 300}]},
-        ];
-
-        const phoneNumber = "+923171991742";
-        let currentFood = null;
-        let selectedItem = null;
-        let selectedSize = null;
-        let userLatLng = null;
-        let deferredPrompt;
-        let currentCategory = 'all';
-        let searchQuery = '';
-
-        // PWA Install Popup
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            
-            setTimeout(() => {
-                document.getElementById('installPopup').classList.add('show');
-            }, 5000);
-        });
-
-        document.getElementById('installBtn').addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                console.log(`User response: ${outcome}`);
-                deferredPrompt = null;
-            }
-            document.getElementById('installPopup').classList.remove('show');
-        });
-
-        document.getElementById('closeInstallBtn').addEventListener('click', () => {
-            document.getElementById('installPopup').classList.remove('show');
-        });
-
-        // Register Service Worker
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(reg => console.log('Service Worker registered'))
-                    .catch(err => console.log('Service Worker registration failed'));
-            });
-        }
-
-        // Search Functionality
-        const searchInput = document.getElementById('searchInput');
-        const clearSearchBtn = document.getElementById('clearSearch');
-        const searchInfo = document.getElementById('searchInfo');
-
-        searchInput.addEventListener('input', function(e) {
-            searchQuery = e.target.value.toLowerCase().trim();
-            
-            if (searchQuery.length > 0) {
-                clearSearchBtn.style.display = 'flex';
-                renderFoodItems(currentCategory, searchQuery);
-            } else {
-                clearSearchBtn.style.display = 'none';
-                renderFoodItems(currentCategory);
-            }
-        });
-
-        clearSearchBtn.addEventListener('click', function() {
-            searchInput.value = '';
-            searchQuery = '';
-            clearSearchBtn.style.display = 'none';
-            searchInfo.textContent = '';
-            renderFoodItems(currentCategory);
-            searchInput.focus();
-        });
-
-        // Render Food Items with Search
-        function renderFoodItems(category, search = '') {
-            const grid = document.getElementById('foodGrid');
-            grid.innerHTML = '';
-            
-            let filtered = category === 'all' ? foodItems : foodItems.filter(item => item.category === category);
-            
-            // Apply search filter
-            if (search) {
-                filtered = filtered.filter(item => 
-                    item.name.toLowerCase().includes(search) ||
-                    item.desc.toLowerCase().includes(search) ||
-                    item.category.toLowerCase().includes(search)
-                );
-            }
-            
-            // Update search info
-            if (search) {
-                if (filtered.length > 0) {
-                    searchInfo.textContent = `✅ Found ${filtered.length} item${filtered.length > 1 ? 's' : ''} matching "${searchInput.value}"`;
-                    searchInfo.style.color = 'var(--primary)';
-                } else {
-                    searchInfo.textContent = `❌ No items found for "${searchInput.value}"`;
-                    searchInfo.style.color = '#f44336';
-                }
-            } else {
-                searchInfo.textContent = '';
-            }
-            
-            // Show no results message
-            if (filtered.length === 0) {
-                grid.innerHTML = `
-                    <div class="no-results" style="grid-column: 1/-1;">
-                        <i class="fas fa-search"></i>
-                        <h3>No Items Found</h3>
-                        <p>Try searching with different keywords or browse all categories</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            // Render food cards
-            filtered.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'food-card';
-                const priceDisplay = item.sizes.length > 1 ? `From Rs. ${item.sizes[0].price}` : `Rs. ${item.sizes[0].price}`;
-                
-                // Highlight search terms
-                let displayName = item.name;
-                let displayDesc = item.desc.substring(0, 80) + '...';
-                
-                if (search) {
-                    const regex = new RegExp(`(${search})`, 'gi');
-                    displayName = item.name.replace(regex, '<mark style="background: var(--primary); color: var(--black); padding: 2px 4px; border-radius: 3px;">$1</mark>');
-                    displayDesc = item.desc.substring(0, 80).replace(regex, '<mark style="background: var(--primary); color: var(--black); padding: 2px 4px; border-radius: 3px;">$1</mark>') + '...';
-                }
-                
-                card.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}" class="food-image">
-                    <div class="food-info">
-                        <h3 class="food-name">${displayName}</h3>
-                        <p class="food-price">${priceDisplay}</p>
-                        <p class="food-desc">${displayDesc}</p>
-                        <button class="order-btn" onclick="openModal(${item.id})">
-                            <i class="fas fa-eye"></i> View Details
-                        </button>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        // Category Filter
-        document.querySelectorAll('.category-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                currentCategory = this.dataset.category;
-                renderFoodItems(currentCategory, searchQuery);
-            });
-        });
-
-        // Modal Functions
-        function openModal(id) {
-            currentFood = foodItems.find(item => item.id === id);
-            if (currentFood) {
-                const priceDisplay = currentFood.sizes.length > 1 ? `From Rs. ${currentFood.sizes[0].price}` : `Rs. ${currentFood.sizes[0].price}`;
-                document.getElementById('modalImage').src = currentFood.image;
-                document.getElementById('modalName').textContent = currentFood.name;
-                document.getElementById('modalPrice').textContent = priceDisplay;
-                document.getElementById('modalDesc').textContent = currentFood.desc;
-                document.getElementById('foodModal').style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeModal() {
-            document.getElementById('foodModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        function showHome() {
-            document.getElementById('homePage').classList.remove('hidden');
-            document.getElementById('orderPage').classList.remove('active');
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-
-        function showOrderPage() {
-            document.getElementById('homePage').classList.add('hidden');
-            document.getElementById('orderPage').classList.add('active');
-            window.scrollTo({top: 0, behavior: 'smooth'});
-            populateItemSelect();
-        }
-
-        function populateItemSelect() {
-            const select = document.getElementById('itemSelect');
-            select.innerHTML = '<option value="">Choose your item...</option>';
-            foodItems.forEach(item => {
-                const option = document.createElement('option');
-                option.value = item.id;
-                option.textContent = item.name;
-                select.appendChild(option);
-            });
-        }
-
-        function updateSizes() {
-            const itemId = parseInt(document.getElementById('itemSelect').value);
-            selectedItem = foodItems.find(item => item.id === itemId);
-            
-            if (selectedItem) {
-                const sizeGroup = document.getElementById('sizeGroup');
-                const sizeOptions = document.getElementById('sizeOptions');
-                sizeOptions.innerHTML = '';
-                
-                selectedItem.sizes.forEach(size => {
-                    const btn = document.createElement('button');
-                    btn.type = 'button';
-                    btn.className = 'size-btn';
-                    btn.textContent = `${size.name} - Rs. ${size.price}`;
-                    btn.onclick = () => selectSize(size, btn);
-                    sizeOptions.appendChild(btn);
-                });
-                
-                sizeGroup.style.display = 'block';
-                updateSummary();
-            }
-        }
-
-        function selectSize(size, btn) {
-            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
-            btn.classList.add('selected');
-            selectedSize = size;
-            updateTotal();
-        }
-
-        function updateSummary() {
-            if (selectedItem) {
-                document.getElementById('summaryItem').textContent = selectedItem.name;
-            }
-        }
-
-        function updateTotal() {
-            if (selectedItem && selectedSize) {
-                const qty = parseInt(document.getElementById('quantity').value) || 1;
-                const total = selectedSize.price * qty;
-                
-                document.getElementById('summarySize').textContent = selectedSize.name;
-                document.getElementById('summaryQty').textContent = qty;
-                document.getElementById('summaryPrice').textContent = `Rs. ${selectedSize.price}`;
-                document.getElementById('summaryTotal').textContent = `Rs. ${total}`;
-            }
-        }
-
-        // Get Location
-        function getLocation() {
-            const btn = document.getElementById('locationBtn');
-            const addressField = document.getElementById('deliveryAddress');
-            const mapLinkContainer = document.getElementById('mapLinkContainer');
-            
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Getting Exact Location...';
-
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    function(position) {
-                        const lat = position.coords.latitude;
-                        const lng = position.coords.longitude;
-                        const accuracy = position.coords.accuracy;
-                        
-                        userLatLng = { lat, lng };
-                        
-                        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
-                        const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
-                        
-                        addressField.value = `📍 EXACT LOCATION CAPTURED\n\n🗺️ Google Maps Link:\n${mapsUrl}\n\n✅ Accuracy: ${Math.round(accuracy)} meters\n\n📝 Add your house/building number or landmark below:\n`;
-                        
-                        mapLinkContainer.innerHTML = `
-                            <div style="display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1rem;">
-                                <a href="${mapsUrl}" target="_blank" class="map-link" style="background: linear-gradient(135deg, #4CAF50, #45a049); color: white; padding: 1rem; border-radius: 15px; display: flex; align-items: center; justify-content: center; gap: 0.5rem; text-decoration: none; font-weight: bold; box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);">
-                                    <i class="fas fa-map-marked-alt"></i> Open My Location in Google Maps
-                                </a>
-                                <a href="${directionsUrl}" target="_blank" class="map-link" style="background: linear-gradient(135deg, #2196F3, #1976D2); color: white; padding: 1rem; border-radius: 15px; display: flex; align-items: center; justify-content: center; gap: 0.5rem; text-decoration: none; font-weight: bold; box-shadow: 0 5px 20px rgba(33, 150, 243, 0.4);">
-                                    <i class="fas fa-directions"></i> Get Directions to My Location
-                                </a>
-                                <div style="background: rgba(76, 175, 80, 0.1); padding: 1rem; border-radius: 15px; border: 2px solid #4CAF50; color: #4CAF50; font-weight: bold; text-align: center;">
-                                    <i class="fas fa-check-circle"></i> Location Accuracy: ±${Math.round(accuracy)} meters
-                                </div>
-                            </div>
-                        `;
-                        
-                        btn.disabled = false;
-                        btn.innerHTML = '<i class="fas fa-check-circle"></i> ✅ Exact Location Captured!';
-                        btn.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
-                        
-                        alert(`✅ EXACT LOCATION CAPTURED!\n\n📍 Coordinates:\nLatitude: ${lat.toFixed(8)}\nLongitude: ${lng.toFixed(8)}\n\n🎯 Accuracy: ±${Math.round(accuracy)} meters\n\n✅ Click "Open My Location in Google Maps" to verify your exact location!\n\n⚠️ Please add your house/building number in the address field.`);
-                        
-                        setTimeout(() => {
-                            addressField.focus();
-                            addressField.setSelectionRange(addressField.value.length, addressField.value.length);
-                        }, 500);
-                    },
-                    function(error) {
-                        btn.disabled = false;
-                        btn.innerHTML = '<i class="fas fa-crosshairs"></i> Use My Current Location';
-                        btn.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
-                        
-                        let errorMsg = '';
-                        let solution = '';
-                        
-                        switch(error.code) {
-                            case error.PERMISSION_DENIED:
-                                errorMsg = 'Location permission denied!';
-                                solution = '\n\n📱 How to fix:\n1. Click the 🔒 lock icon in address bar\n2. Allow location access\n3. Refresh the page and try again';
-                                break;
-                            case error.POSITION_UNAVAILABLE:
-                                errorMsg = 'Location unavailable!';
-                                solution = '\n\n📱 How to fix:\n1. Check your GPS is ON\n2. Make sure you have internet connection\n3. Try again in a few seconds';
-                                break;
-                            case error.TIMEOUT:
-                                errorMsg = 'Location request timed out!';
-                                solution = '\n\n📱 How to fix:\n1. Check your GPS signal\n2. Try moving to an open area\n3. Click the button again';
-                                break;
-                            default:
-                                errorMsg = 'Unknown error occurred!';
-                                solution = '\n\n📱 Try refreshing the page and allowing location access.';
-                        }
-                        
-                        alert('❌ ' + errorMsg + solution);
-                        
-                        mapLinkContainer.innerHTML = `
-                            <div style="background: rgba(244, 67, 54, 0.1); padding: 1rem; border-radius: 15px; border: 2px solid #f44336; color: #f44336; font-weight: bold; text-align: center; margin-top: 1rem;">
-                                <i class="fas fa-exclamation-triangle"></i> ${errorMsg.replace('!', '')}
-                                <br><small style="font-weight: normal;">Please enable location access and try again</small>
-                            </div>
-                        `;
-                    },
-                    {
-                        enableHighAccuracy: true,
-                        timeout: 30000,
-                        maximumAge: 0
-                    }
-                );
-            } else {
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-crosshairs"></i> Use My Current Location';
-                alert('❌ Your browser does not support geolocation!\n\nPlease use Chrome, Firefox, or Safari browser.');
-                
-                mapLinkContainer.innerHTML = `
-                    <div style="background: rgba(244, 67, 54, 0.1); padding: 1rem; border-radius: 15px; border: 2px solid #f44336; color: #f44336; font-weight: bold; text-align: center; margin-top: 1rem;">
-                        <i class="fas fa-times-circle"></i> Browser not supported
-                        <br><small style="font-weight: normal;">Please use Chrome, Firefox, or Safari</small>
-                    </div>
-                `;
-            }
-        }
-
-        // Submit Order
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (!selectedItem || !selectedSize) {
-                alert('⚠️ Please select an item and size!');
-                return;
-            }
-
-            const name = document.getElementById('customerName').value;
-            const phone = document.getElementById('customerPhone').value;
-            const qty = document.getElementById('quantity').value;
-            const address = document.getElementById('deliveryAddress').value;
-            const instructions = document.getElementById('specialInstructions').value;
-            const total = selectedSize.price * qty;
-
-            let message = `🍕 *URBAN CRUST ORDER*\n\n`;
-            message += `👤 *Customer Details:*\n`;
-            message += `Name: ${name}\n`;
-            message += `Phone: ${phone}\n\n`;
-            message += `🍽️ *Order Details:*\n`;
-            message += `Item: ${selectedItem.name}\n`;
-            message += `Size: ${selectedSize.name}\n`;
-            message += `Quantity: ${qty}\n`;
-            message += `💰 *Total: Rs. ${total}*\n\n`;
-            
-            if (userLatLng) {
-                const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${userLatLng.lat},${userLatLng.lng}`;
-                message += `📍 *DELIVERY LOCATION (GOOGLE MAPS):*\n`;
-                message += `${mapsUrl}\n\n`;
-                message += `📌 *Exact Coordinates:*\n`;
-                message += `Latitude: ${userLatLng.lat.toFixed(8)}\n`;
-                message += `Longitude: ${userLatLng.lng.toFixed(8)}\n\n`;
-            }
-            
-            message += `🏠 *Address Details:*\n${address}\n\n`;
-            
-            if (instructions) {
-                message += `📝 *Special Instructions:*\n${instructions}\n\n`;
-            }
-            
-            message += `───────────────\n`;
-            message += `📍 *Urban Crust Restaurant*\n`;
-            message += `E-16 Rafey Arcade, Islamabad\n`;
-            message += `☎️ +92 317 1991742`;
-
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
-            
-            alert('✅ Order submitted!\n\n📱 Opening WhatsApp...\n\n💡 Your exact location has been shared with us via Google Maps link!');
-        });
-
-        // Modal Order Button
-        document.getElementById('modalOrderBtn').addEventListener('click', function() {
-            closeModal();
-            showOrderPage();
-            setTimeout(() => {
-                document.getElementById('itemSelect').value = currentFood.id;
-                updateSizes();
-            }, 100);
-        });
-
-        // Close modal on outside click
-        document.getElementById('foodModal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
-
-        // Keyboard accessibility
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                if (document.getElementById('foodModal').style.display === 'block') {
-                    closeModal();
-                }
-            }
-        });
-
         // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href !== '#order' && href !== '#') {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
 
-        // Initialize
-        renderFoodItems('all');
+        // Scroll to Top Button
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards and gallery items
+        document.querySelectorAll('.feature-card, .gallery-item, .stat-card, .location-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // FIX: Parallax effect only on desktop (screens wider than 768px)
+        let parallaxEnabled = window.innerWidth > 768;
+
+        window.addEventListener('resize', () => {
+            parallaxEnabled = window.innerWidth > 768;
+        });
+
+        window.addEventListener('scroll', () => {
+            // Only apply parallax on desktop
+            if (parallaxEnabled) {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero');
+                if (hero && scrolled < window.innerHeight) {
+                    hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+                }
+            }
+        });
+
+        // Animate stats numbers
+        const animateNumber = (element, target) => {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString() + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString();
+                }
+            }, 20);
+        };
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                    const number = entry.target.querySelector('.stat-number');
+                    const targetText = number.textContent.replace(/[^0-9]/g, '');
+                    const target = parseInt(targetText);
+                    animateNumber(number, target);
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-card').forEach(card => {
+            statsObserver.observe(card);
+        });
     </script>
 </body>
 </html>
